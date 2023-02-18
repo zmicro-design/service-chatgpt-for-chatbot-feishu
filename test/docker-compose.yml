@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+
+  chatgpt-for-chatbot-feishu:
+    image: whatwewant/registry:${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_IMAGE_VERSION}
+    environment:
+      APP_ID: ${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_ID}
+      APP_SECRET: ${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_SECRET}
+      CHATGPT_API_KEY: ${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_CHATGPT_API_KEY}
+
+networks:
+  default:
+    external: true
+    name: compose-ingress

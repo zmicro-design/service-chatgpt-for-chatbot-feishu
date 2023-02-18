@@ -1,0 +1,19 @@
+#!/bin/bash
+
+service::config_set() {
+  config::check_or_set $1 $SERVICE_CONFIG ${@:2}
+}
+
+check() {
+  if [ "$DEBUG" = "true" ]; then
+    log::info "[DEBUG][service]: $SERVICE_CONFIG"
+    cat $SERVICE_CONFIG
+  fi
+
+  service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_PORT text "服务访问端口" 8080
+  service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_ID text "飞书企业应用 APP ID"
+  service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_SECRET text "飞书企业应用 APP Secret"
+  service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_SECRET text "飞书企业应用 APP Secret"
+}
+
+check $@
