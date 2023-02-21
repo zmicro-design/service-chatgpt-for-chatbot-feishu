@@ -14,6 +14,18 @@ check() {
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_ID text "飞书企业应用 APP ID"
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_SECRET text "飞书企业应用 APP Secret"
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_CHATGPT_API_KEY text "OpenAI API Key"
+
+  service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_ENABLE yesno "是否启用 tunnel" "No"
+  if [ "$SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_ENABLE" = "true" ]; then
+    available_types=("cpolar" "ngrok")
+    service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_TYPE "select" available_types "请选择 tunnel 类型"
+    service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_AUTH_TOKEN text "请输入 tunnel auth token"
+
+    service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_SUBDOMAIN_ENABLE yesno "是否启用子域名"
+    if [ "$SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_SUBDOMAIN_ENABLE" = "true" ]; then
+      service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_SUBDOMAIN text "请输入 tunnel 子域名"
+    fi
+  fi
 }
 
 check $@
