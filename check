@@ -10,6 +10,13 @@ check() {
     cat $SERVICE_CONFIG
   fi
 
+  # @TODO if not v2, install v2
+  docker-compose -v | grep v2 >>/dev/null 2>&1
+  if [ "$?" != "0" ]; then
+    log::info "[$(timestamp)] docker-compose version($(docker-compose -v)) to old, upgrading ..."
+    zmicro package install docker-compose@latest
+  fi
+
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_PORT text "服务访问端口" 8080
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_ID text "飞书企业应用 APP ID"
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_SECRET text "飞书企业应用 APP Secret"
