@@ -6,7 +6,7 @@ services:
     image: whatwewant/chatgpt-for-chatbot-feishu:${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_IMAGE_VERSION}
     ports:
       - 0.0.0.0:${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_PORT}:8080
-    # platform: linux/amd64
+    platform: linux/amd64
     environment:
       APP_ID: ${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_ID}
       APP_SECRET: ${SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_SECRET}
