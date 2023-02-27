@@ -17,10 +17,14 @@ check() {
     zmicro package install docker-compose@latest
   fi
 
+  if [ -n "$SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_CHATGPT_API_KEY" ] && [ -z "$SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_OPENAI_API_KEY" ]; then
+    export SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_OPENAI_API_KEY=$SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_CHATGPT_API_KEY
+  fi
+
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_PORT text "服务访问端口" 8080
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_ID text "飞书企业应用 APP ID"
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_APP_SECRET text "飞书企业应用 APP Secret"
-  service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_CHATGPT_API_KEY text "OpenAI API Key"
+  service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_OPENAI_API_KEY text "OpenAI API Key"
 
   service::config_set SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_ENABLE yesno "是否启用 tunnel" "No"
   if [ "$SERVICE_CHATGPT_FOR_CHATBOT_FEISHU_TUNNEL_ENABLE" = "true" ]; then
