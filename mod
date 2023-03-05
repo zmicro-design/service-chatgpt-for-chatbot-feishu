@@ -1,3 +1,3 @@
 NAME=chatgpt-for-chatbot-feishu
-VERSION=v1.2.12
+VERSION=v1.3.0
 DESCRIPTION="Docker Registry Core Service"
